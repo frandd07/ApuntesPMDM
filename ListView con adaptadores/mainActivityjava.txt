@@ -1,0 +1,72 @@
+package com.example.adaptadores;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+ListView listado = findViewById(R.id.miLista);
+
+Datos[] datos = new Datos[]{
+
+new Datos("Real Madrid Fútbol Club", "Estadio
+Santiago Bernabeu", R.drawable.banderaespana, "La Liga EA Sports",
+true, "https://www.realmadrid.com/es-ES", R.drawable.escudomadrid),
+new Datos("Manchester United", "Old Trafford",
+
+R.drawable.banderaru, "Premier League", true,
+"https://www.manutd.com/es", R.drawable.escudomanchester),
+new Datos("Juventus FC", "Allianz Stadium",
+
+R.drawable.banderaitalia, "Serie A", false,
+"https://www.juventus.com/en", R.drawable.escudojuve),
+new Datos("Bayern Múnich", "Allianz Arena",
+
+R.drawable.banderaalemania, "Bundesliga", true,
+"https://fcbayern.com/es", R.drawable.escudobayern),
+
+new Datos("Paris Saint-Germain", "Parque de los
+Príncipes", R.drawable.banderafrancia, "Ligue 1", false,
+"https://www.psg.fr", R.drawable.escudopsg),
+
+new Datos("River Plate", "Monumental",
+R.drawable.banderaargentina, "Superliga Argentina", true,
+"https://www.cariverplate.com.ar", R.drawable.escudoriver),
+
+new Datos("Flamengo", "Maracanã",
+
+R.drawable.banderabrasil, "Campeonato Brasileño", false,
+"https://www.flamengo.com.br", R.drawable.escudoflamengo),
+new Datos("Ajax Ámsterdam", "Johan Cruijff Arena",
+
+R.drawable.banderaholanda, "Eredivisie", true,
+"https://www.ajax.nl", R.drawable.escudoajax),
+
+new Datos("Club América", "Estadio Azteca",
+
+R.drawable.banderamexico, "Liga MX", true,
+"https://www.clubamerica.com.mx", R.drawable.escudoamerica),
+new Datos("Galatasaray S.K.", "Türk Telekom
+Stadium", R.drawable.banderaturquia, "Süper Lig", false,
+"https://www.galatasaray.org", R.drawable.escudogalatasaray),
+
+};
+Adaptador miAdaptador = new Adaptador(this, datos);
+listado.setAdapter(miAdaptador);
+listado.setOnItemClickListener((parent, view, position, id)
+-> {
+
+String seleccionado = ((Datos)
+parent.getItemAtPosition(position)).getNombre();
+
+Toast.makeText(this, "Equipo añadido en favoritos: " +
+
+seleccionado, Toast.LENGTH_SHORT).show();
+});
+
+}
+}

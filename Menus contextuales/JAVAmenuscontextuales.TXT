@@ -1,0 +1,68 @@
+package com.example.act4ud6;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.ContextMenu;
+
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private TextView textViewPulsar;
+    private TextView textViewTexto;
+
+    @Override
+    protected void onCreate(Bundle
+                                    savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        textViewTexto = findViewById(R.id.texto);
+        textViewPulsar = findViewById(R.id.pulsar);
+
+        registerForContextMenu(textViewPulsar);
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo
+            menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,
+                menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_1:
+                textViewTexto.setText("Has seleccionado: Carnes");
+                return true;
+
+            case R.id.submenu_item_1_1:
+                textViewTexto.setText("Has seleccionado: Solomillo de cerdo");
+                return true;
+            case R.id.submenu_item_1_2:
+                textViewTexto.setText("Has seleccionado: Pechuga empanada");
+                return true;
+
+            case R.id.menu_item_2:
+                textViewTexto.setText("Has seleccionado: Pescados");
+                return true;
+
+            case R.id.submenu_item_2_1:
+                textViewTexto.setText("Has seleccionado: Chocos fritos");
+                return true;
+            case R.id.submenu_item_2_2:
+                textViewTexto.setText("Has seleccionado: Boquerones");
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+}

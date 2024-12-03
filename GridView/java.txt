@@ -1,0 +1,64 @@
+package com.example.act1ud6;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+private GridView gridViewPaises;
+private TextView textViewSeleccion;
+private ImageView imageViewPais;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+gridViewPaises = findViewById(R.id.gridViewPaises);
+textViewSeleccion = findViewById(R.id.textViewSeleccion);
+imageViewPais = findViewById(R.id.imageViewPais);
+String[] paises = {"España", "Francia", "Alemania",
+"Italia", "Portugal",
+
+"Grecia", "Suiza", "Países Bajos", "Suecia",
+
+"Noruega"};
+int[] imagenesPaises = {
+R.drawable.espana,
+R.drawable.francia,
+R.drawable.alemania,
+R.drawable.italia,
+R.drawable.portugal,
+R.drawable.grecia,
+R.drawable.suiza,
+R.drawable.paisesbajos,
+R.drawable.suecia,
+R.drawable.noruega
+
+};
+ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,
+android.R.layout.simple_list_item_1, paises);
+
+gridViewPaises.setAdapter(adaptador);
+gridViewPaises.setOnItemClickListener(new
+AdapterView.OnItemClickListener() {
+
+@Override
+public void onItemClick(AdapterView<?> parent, View
+
+view, int position, long id) {
+
+String paisSeleccionado = paises[position];
+textViewSeleccion.setText("Pulsado: " +
+
+paisSeleccionado);
+
+imageViewPais.setImageResource(imagenesPaises[position]);
+
+}
+});
+}
+}

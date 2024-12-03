@@ -1,0 +1,30 @@
+//creamos en res un menu y creamos dentro menu.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_1"
+        android:title="Carnes">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_1_1"
+                android:title="Solomillo de cerdo" />
+            <item
+                android:id="@+id/submenu_item_1_2"
+                android:title="Pechuga empanada" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menu_item_2"
+        android:title="Pescados">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_2_1"
+                android:title="Chocos fritos" />
+            <item
+                android:id="@+id/submenu_item_2_2"
+                android:title="Boquerones" />
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,152 @@
+package com.example.act3ud6;
+import android.os.Bundle;
+import android.view.Menu;
+
+import android.view.MenuItem;
+import android.view.SubMenu;
+import android.widget.TextView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+public class MainActivity extends AppCompatActivity {
+private TextView textView;
+private static final int op1 = 1;
+private static final int op2 = 2;
+private static final int op3 = 3;
+private static final int op4 = 4;
+private static final int op5 = 5;
+private static final int op6 = 6;
+private static final int op7 = 7;
+private static final int op8 = 8;
+private static final int op9 = 9;
+private static final int op10 = 10;
+private static final int op11 = 11;
+private static final int op12 = 12;
+private static final int op13 = 13;
+private static final int op14 = 14;
+private static final int op15 = 15;
+private static final int op16 = 16;
+private static final int op17 = 17;
+private static final int op18 = 18;
+private static final int op19 = 19;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+EdgeToEdge.enable(this);
+setContentView(R.layout.activity_main);
+ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main),
+(v, insets) -> {
+
+Insets systemBars =
+
+insets.getInsets(WindowInsetsCompat.Type.systemBars());
+v.setPadding(systemBars.left, systemBars.top,
+
+systemBars.right, systemBars.bottom);
+
+return insets;
+});
+textView = findViewById(R.id.texto);
+Toolbar toolbar = findViewById(R.id.toolbar);
+setSupportActionBar(toolbar);
+
+}
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+SubMenu menuDias = menu.addSubMenu(Menu.NONE, 0, Menu.NONE,
+"Días de la Semana");
+menuDias.add(Menu.NONE, op1, Menu.NONE, "Lunes");
+menuDias.add(Menu.NONE, op2, Menu.NONE, "Martes");
+menuDias.add(Menu.NONE, op3, Menu.NONE, "Miércoles");
+menuDias.add(Menu.NONE, op4, Menu.NONE, "Jueves");
+menuDias.add(Menu.NONE, op5, Menu.NONE, "Viernes");
+menuDias.add(Menu.NONE, op6, Menu.NONE, "Sábado");
+menuDias.add(Menu.NONE, op7, Menu.NONE, "Domingo");
+SubMenu menuMeses = menu.addSubMenu(Menu.NONE, 1, Menu.NONE,
+"Meses del Año");
+menuMeses.add(Menu.NONE, op8, Menu.NONE, "Enero");
+menuMeses.add(Menu.NONE, op9, Menu.NONE, "Febrero");
+menuMeses.add(Menu.NONE, op10, Menu.NONE, "Marzo");
+menuMeses.add(Menu.NONE, op11, Menu.NONE, "Abril");
+menuMeses.add(Menu.NONE, op12, Menu.NONE, "Mayo");
+menuMeses.add(Menu.NONE, op13, Menu.NONE, "Junio");
+menuMeses.add(Menu.NONE, op14, Menu.NONE, "Julio");
+menuMeses.add(Menu.NONE, op15, Menu.NONE, "Agosto");
+menuMeses.add(Menu.NONE, op16, Menu.NONE, "Septiembre");
+menuMeses.add(Menu.NONE, op17, Menu.NONE, "Octubre");
+menuMeses.add(Menu.NONE, op18, Menu.NONE, "Noviembre");
+menuMeses.add(Menu.NONE, op19, Menu.NONE, "Diciembre");
+return true;
+}
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+switch (item.getItemId()) {
+case op1:
+textView.setText("Pulsado: Lunes");
+return true;
+case op2:
+
+textView.setText("Pulsado: Martes");
+return true;
+case op3:
+textView.setText("Pulsado: Miércoles");
+return true;
+case op4:
+textView.setText("Pulsado: Jueves");
+return true;
+case op5:
+textView.setText("Pulsado: Viernes");
+return true;
+case op6:
+textView.setText("Pulsado: Sábado");
+return true;
+case op7:
+textView.setText("Pulsado: Domingo");
+return true;
+case op8:
+textView.setText("Pulsado: Enero");
+return true;
+case op9:
+textView.setText("Pulsado: Febrero");
+return true;
+case op10:
+textView.setText("Pulsado: Marzo");
+return true;
+case op11:
+textView.setText("Pulsado: Abril");
+return true;
+case op12:
+textView.setText("Pulsado: Mayo");
+return true;
+case op13:
+textView.setText("Pulsado: Junio");
+return true;
+case op14:
+textView.setText("Pulsado: Julio");
+return true;
+case op15:
+textView.setText("Pulsado: Agosto");
+return true;
+case op16:
+textView.setText("Pulsado: Septiembre");
+return true;
+case op17:
+textView.setText("Pulsado: Octubre");
+return true;
+case op18:
+
+textView.setText("Pulsado: Noviembre");
+return true;
+case op19:
+textView.setText("Pulsado: Diciembre");
+return true;
+default:
+return super.onOptionsItemSelected(item);
+
+}
+}
+}

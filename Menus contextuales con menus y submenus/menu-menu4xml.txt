@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_postre_tarta"
+        android:title="Tartas">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_tarta_1"
+                android:title="Tarta de chocolate" />
+            <item
+                android:id="@+id/submenu_item_tarta_2"
+                android:title="Tarta de manzana" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_item_postre_casero"
+        android:title="Postres Caseros">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_postre_casero_1"
+                android:title="Flan casero" />
+            <item
+                android:id="@+id/submenu_item_postre_casero_2"
+                android:title="Arroz con leche" />
+        </menu>
+    </item>
+</menu>

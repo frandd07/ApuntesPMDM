@@ -1,0 +1,164 @@
+package com.example.act4ud6ej2;
+
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ListView listView;
+    private TextView textViewTexto;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        textViewTexto = findViewById(R.id.texto);
+        listView = findViewById(R.id.listView);
+
+        ArrayList<String> opciones = new ArrayList<>();
+        opciones.add("Entrantes");
+        opciones.add("Carnes");
+        opciones.add("Pescados");
+        opciones.add("Postres");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                R.layout.list_item,
+                R.id.list_item_text,
+                opciones
+        );
+
+        listView.setAdapter(adapter);
+        registerForContextMenu(listView);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        if (v.getId() == R.id.listView) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            String selectedItem = (String) listView.getItemAtPosition(info.position);
+
+            MenuInflater inflater = getMenuInflater();
+
+            switch (selectedItem) {
+                case "Entrantes":
+                    inflater.inflate(R.menu.menu_entrantes, menu);
+                    break;
+                case "Carnes":
+                    inflater.inflate(R.menu.menu_carnes, menu);
+                    break;
+                case "Pescados":
+                    inflater.inflate(R.menu.menu_pescados, menu);
+                    break;
+                case "Postres":
+                    inflater.inflate(R.menu.menu_postres, menu);
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        try {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            String selectedItem = (info != null) ? (String) listView.getItemAtPosition(info.position) : null;
+
+            switch (item.getItemId()) {
+                case R.id.menu_item_entrante_tapas_frias:
+                    textViewTexto.setText("Has seleccionado: Tapas Frías");
+                    return true;
+                case R.id.submenu_item_tapa_fria_1:
+                    textViewTexto.setText("Has seleccionado: Ensaladilla rusa");
+                    return true;
+                case R.id.submenu_item_tapa_fria_2:
+                    textViewTexto.setText("Has seleccionado: Gazpacho");
+                    return true;
+                case R.id.menu_item_entrante_tapas_elaboradas:
+                    textViewTexto.setText("Has seleccionado: Tapas Elaboradas");
+                    return true;
+                case R.id.submenu_item_tapa_elaborada_1:
+                    textViewTexto.setText("Has seleccionado: Tortillitas de camarones");
+                    return true;
+                case R.id.submenu_item_tapa_elaborada_2:
+                    textViewTexto.setText("Has seleccionado: Croquetas caseras");
+                    return true;
+
+                case R.id.menu_item_carne_roja:
+                    textViewTexto.setText("Has seleccionado: Carne Roja");
+                    return true;
+                case R.id.submenu_item_carne_roja_1:
+                    textViewTexto.setText("Has seleccionado: Solomillo de ternera");
+                    return true;
+                case R.id.submenu_item_carne_roja_2:
+                    textViewTexto.setText("Has seleccionado: Entrecot a la parrilla");
+                    return true;
+                case R.id.menu_item_carne_pollo:
+                    textViewTexto.setText("Has seleccionado: Pollo");
+                    return true;
+                case R.id.submenu_item_pollo_1:
+                    textViewTexto.setText("Has seleccionado: Pollo a la plancha");
+                    return true;
+                case R.id.submenu_item_pollo_2:
+                    textViewTexto.setText("Has seleccionado: Pollo al ajillo");
+                    return true;
+
+                case R.id.menu_item_pescado_blanco:
+                    textViewTexto.setText("Has seleccionado: Pescado Blanco");
+                    return true;
+                case R.id.submenu_item_pescado_blanco_1:
+                    textViewTexto.setText("Has seleccionado: Merluza a la plancha");
+                    return true;
+                case R.id.submenu_item_pescado_blanco_2:
+                    textViewTexto.setText("Has seleccionado: Pargo al horno");
+                    return true;
+                case R.id.menu_item_pescado_grande:
+                    textViewTexto.setText("Has seleccionado: Pescado Grande");
+                    return true;
+                case R.id.submenu_item_pescado_grande_1:
+                    textViewTexto.setText("Has seleccionado: Atún a la parrilla");
+                    return true;
+                case R.id.submenu_item_pescado_grande_2:
+                    textViewTexto.setText("Has seleccionado: Salmón al horno");
+                    return true;
+
+                case R.id.menu_item_postre_tarta:
+                    textViewTexto.setText("Has seleccionado: Tartas");
+                    return true;
+                case R.id.submenu_item_tarta_1:
+                    textViewTexto.setText("Has seleccionado: Tarta de chocolate");
+                    return true;
+                case R.id.submenu_item_tarta_2:
+                    textViewTexto.setText("Has seleccionado: Tarta de manzana");
+                    return true;
+                case R.id.menu_item_postre_casero:
+                    textViewTexto.setText("Has seleccionado: Postres Caseros");
+                    return true;
+                case R.id.submenu_item_postre_casero_1:
+                    textViewTexto.setText("Has seleccionado: Flan casero");
+                    return true;
+                case R.id.submenu_item_postre_casero_2:
+                    textViewTexto.setText("Has seleccionado: Arroz con leche");
+                    return true;
+
+                default:
+                    return super.onContextItemSelected(item);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return super.onContextItemSelected(item);
+        }
+    }
+}

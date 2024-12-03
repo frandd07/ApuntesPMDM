@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_entrante_tapas_frias"
+        android:title="Tapas Frías">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_tapa_fria_1"
+                android:title="Ensaladilla rusa" />
+            <item
+                android:id="@+id/submenu_item_tapa_fria_2"
+                android:title="Gazpacho" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_item_entrante_tapas_elaboradas"
+        android:title="Tapas Elaboradas">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_tapa_elaborada_1"
+                android:title="Tortillitas de camarones" />
+            <item
+                android:id="@+id/submenu_item_tapa_elaborada_2"
+                android:title="Croquetas caseras" />
+        </menu>
+    </item>
+</menu>

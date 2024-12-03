@@ -1,0 +1,45 @@
+package com.example.adaptadores;
+public class Datos {
+private String nombre;
+private String estadio;
+private int bandera;
+private String liga;
+private boolean favorito;
+private String web;
+private int escudo;
+public Datos(String nombre, String estadio, int bandera, String
+liga, boolean favorito, String web, int escudo) {
+this.nombre = nombre;
+this.estadio = estadio;
+this.bandera = bandera;
+this.liga = liga;
+this.favorito = favorito;
+this.web = web;
+this.escudo = escudo;
+}
+public String getNombre() {
+return nombre;
+}
+public String getEstadio() {
+
+return estadio;
+}
+public int getBandera() {
+return bandera;
+}
+public String getLiga() {
+return liga;
+}
+public boolean isFavorito() {
+return favorito;
+}
+public String getWeb() {
+return web;
+}
+public int getEscudo() {
+return escudo;
+}
+public void setFavorito(boolean favorito) {
+this.favorito = favorito;
+}
+}

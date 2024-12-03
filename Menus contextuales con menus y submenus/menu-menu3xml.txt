@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_pescado_blanco"
+        android:title="Pescados Blancos">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_pescado_blanco_1"
+                android:title="Merluza a la plancha" />
+            <item
+                android:id="@+id/submenu_item_pescado_blanco_2"
+                android:title="Pargo al horno" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_item_pescado_grande"
+        android:title="Pescados Grandes">
+        <menu>
+            <item
+                android:id="@+id/submenu_item_pescado_grande_1"
+                android:title="Atún a la parrilla" />
+            <item
+                android:id="@+id/submenu_item_pescado_grande_2"
+                android:title="Salmón al horno" />
+        </menu>
+    </item>
+</menu>
