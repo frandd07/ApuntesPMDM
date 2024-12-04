@@ -1,0 +1,240 @@
+android.nonFinalResIds=false --> gradle.properties
+targetSDK=28 --> build.gradle.kts (module app)
+
+
+//CREACION BOTON CON ONCLICK
+
+Button button = (Button) findViewById(R.id.BUTTON);
+
+
+       button.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               textview.setText("BOTON PULSADO");
+               textview.setTextColor(Color.RED);
+           }
+       });
+
+<Button
+       android:id="@+id/BUTTON"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="BOTON" />
+
+**************************************************
+
+//PONER VISIBLE/INVISIBLE COSAS
+
+userNameET = findViewById(R.id.UserNameET);
+buttonCerrarSesion = findViewById(R.id.ButtonCerrarSesion);
+
+buttonCerrarSesion.setVisibility(View.VISIBLE);
+userNameET.setVisibility(View.GONE);
+android:visibility="gone"
+
+**************************************************
+
+//LISTVIEW
+
+listview = (ListView) findViewById(R.id.ListView);
+
+final String[] datos = new String[]{"España","Italia","Grecia","Austria","Alemania","Croacia","Portugal","Holanda","Polonia"};
+
+ArrayAdapter<String> adaptador = new ArrayAdapter<>(this, R.layout.simple_list_item_modified, datos);
+listview.setAdapter(adaptador);
+
+listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        String elemento = (String) adapterView.getItemAtPosition(i);
+        textview.setText("Pulsado: " + elemento);
+    }
+});
+
+capitales = new HashMap<>();
+capitales.put("España", "Madrid");
+capitales.get(pais); --> país, es una cadena de texto con la key
+
+**************************************************
+
+//GRIDVIEW
+
+ArrayAdapter<String> adaptador = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, datos);
+adaptador.setDropDownViewResource(R.layout.simple_spinner_dropdown_item_modified);
+spinner.setAdapter(adaptador);
+
+spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       @Override
+       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+           String elemento = (String) adapterView.getItemAtPosition(i);
+           textview.setText("Seleccionado: " + elemento);
+       }
+});
+
+**************************************************************
+
+// LISTVIEW ADAPTADOR CUSTOM
+
+public class CustomAdapter extends ArrayAdapter<Datos> {
+   private Datos[] datos;
+
+
+   public CustomAdapter(Context context, Datos[] datos) {
+       super(context,R.layout.item,datos);  --> item es un .xml con los elementos de abajo (ImageView...)
+       this.datos = datos;
+   }
+
+
+   @Override
+   public View getView(int position, View convertView, ViewGroup parent) {
+       LayoutInflater mostrado = LayoutInflater.from(getContext());
+       View item = mostrado.inflate(R.layout.item,parent,false);
+       TextView pais = (TextView) item.findViewById(R.id.pais);
+       pais.setText(datos[position].getPais());
+       TextView capital = (TextView) item.findViewById(R.id.capital);
+       capital.setText(datos[position].getCapital());
+       ImageView imagen = (ImageView) item.findViewById(R.id.bandera);
+       imagen.setImageResource(datos[position].getImagen());
+       return item;
+   }
+}
+
+
+*****************************************************************
+
+// MENU Y SUBMENUS
+
+dentro onCreate:
+
+Toolbar toolbar = findViewById(R.id.toolbar);
+setSupportActionBar(toolbar);
+
+
+fuera onCreate:
+
+@Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.menu_xml,menu);
+       return true;
+   }
+
+
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+       switch(item.getItemId()){
+           case R.id.Lunes:{
+               textview.setText("Opcion seleccionada: Lunes");
+               return true;
+           }
+           case R.id.Martes:{
+               textview.setText("Opcion seleccionada: Martes");
+               return true;
+           }
+           default:{
+               return super.onOptionsItemSelected(item);
+           }
+       }
+   }
+
+SIN XML
+
+@Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+       SubMenu daysOfWeek = menu.addSubMenu("Días de Semana");
+       SubMenu monthsOfYear = menu.addSubMenu("Meses del año");
+       (menu.add("Nombre opción");)
+
+       daysOfWeek.add("Lunes");
+       daysOfWeek.add("Martes");
+       daysOfWeek.add("Miércoles");
+       daysOfWeek.add("Jueves");
+       daysOfWeek.add("Viernes");
+       daysOfWeek.add("Sabado");
+       daysOfWeek.add("Domingo");
+
+       monthsOfYear.add("Enero");
+       monthsOfYear.add("Febrero");
+       monthsOfYear.add("Marzo");
+       monthsOfYear.add("Abril");
+       monthsOfYear.add("Mayo");
+
+       return true;
+   }
+
+
+********************************************************
+
+//MENU CONTEXTUAL
+
+dentro de onCreate:
+
+registerForContextMenu(textview);
+registerForContextMenu(listview);
+
+
+fuera de onCreate:
+
+@Override
+public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    super.onCreateContextMenu(menu, v, menuInfo);
+    int id = v.getId(); // Obtiene el ID de la vista que activó el menú contextual.
+    MenuInflater inflater = getMenuInflater();
+
+    switch (id) {
+        case R.id.textview:
+            inflater.inflate(R.menu.menu_textview, menu); // Carga un menú contextual específico para el `TextView`.
+            break;
+        case R.id.listview:
+            inflater.inflate(R.menu.menu_listview, menu); // Carga un menú contextual para el `ListView`.
+            break;
+    }
+}
+
+
+@Override
+   public boolean onContextItemSelected(@NonNull MenuItem item) {
+       AdapterView.AdapterContextMenuInfo info = null;
+       if(item.getMenuInfo() instanceof AdapterView.AdapterContextMenuInfo){
+           info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+       }
+
+       switch(item.getItemId()){
+           //Elementos textview
+           case R.id.SetRedColor:{
+               if(textview.getCurrentTextColor() == Color.RED){
+                   textview.setTextColor(Color.BLACK);
+               }
+               else{
+                   textview.setTextColor(Color.RED);
+               }
+               textviewsolution.setText("Has seleccionado Poner/Quitar color rojo el texto");
+               return true;
+           }
+           case R.id.SetBold:{
+               if(textview.getTypeface().isBold()){
+                   textview.setTypeface(textview.getTypeface(), Typeface.NORMAL);
+               }
+               else{
+                   textview.setTypeface(textview.getTypeface(), Typeface.BOLD);
+               }
+               textviewsolution.setText("Has seleccionado Poner/Quitar negrita del texto");
+               return true;
+           }
+           case R.id.SetItalic:{
+               if(textview.getTypeface().isItalic()){
+                   textview.setTypeface(textview.getTypeface(), Typeface.NORMAL);
+               }
+               else{
+                   textview.setTypeface(textview.getTypeface(), Typeface.ITALIC);
+               }
+               textviewsolution.setText("Has seleccionado Poner/Quitar cursiva del texto");
+               return true;
+           }
+
+           //Elementos listview
+           case R.id.team1:{
+               if(info != null){
+                   textviewsolution.setText("El equipo seleccionado es: " + teams[info.position][0] + " del pais: " + countries[info.position]);
+               }
+               return true;
+           }
