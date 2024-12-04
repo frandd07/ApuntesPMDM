@@ -1,0 +1,56 @@
+package com.example.cacharreando;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.BaseAdapter;
+
+public class CustomAdapter extends BaseAdapter {
+
+    private Context context;
+    private String[] productos = {"Producto 1", "Producto 2", "Producto 3"};
+    private double[] precios = {10.0, 20.0, 30.0};
+
+    public CustomAdapter(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    public int getCount() {
+        return productos.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return productos[position];
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.list_item, null);
+        }
+
+        TextView productName = convertView.findViewById(R.id.productName);
+        CheckBox checkBox = convertView.findViewById(R.id.checkbox);
+
+        productName.setText(productos[position]);
+
+        convertView.setOnClickListener(v -> {
+            Toast.makeText(context, "Precio: " + precios[position] + "€", Toast.LENGTH_SHORT).show();
+        });
+
+        return convertView;
+    }
+}
+
